@@ -16,7 +16,7 @@ FROM build as publish
 RUN dotnet publish "src/LocalNativeProvider/LocalNativeProvider.csproj" --no-build -c Release -o /app/publish
 
 # Final
-FROM mcr.microsoft.com/dotnet/runtime:7.0 as final
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 as final
 
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
@@ -24,4 +24,4 @@ EXPOSE 8080
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-ENTRYPOINT [ "dotnet", "LocalNativeProvider.csproj" ]
+ENTRYPOINT [ "dotnet", "LocalNativeProvider.dll" ]
