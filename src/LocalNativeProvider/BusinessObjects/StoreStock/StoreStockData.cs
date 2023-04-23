@@ -11,8 +11,8 @@ public class StoreStockData
     [DisplayName("Id da Loja")]
     public int StoreId { get; set; }
 
-    [JsonPropertyName("Name")]
-    [DisplayName("Nome")]
+    [JsonPropertyName("StoreName")]
+    [DisplayName("Nome da loja")]
     public string StoreName { get; set; }
 
     [JsonPropertyName("ProductId")]

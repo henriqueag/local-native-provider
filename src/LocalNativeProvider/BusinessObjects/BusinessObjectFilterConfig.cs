@@ -4,6 +4,8 @@ namespace LocalNativeProvider.BusinessObjects;
 
 public class BusinessObjectFilterConfig
 {
+    public static readonly BusinessObjectFilterConfig Default = new(null);
+    
     public BusinessObjectFilterConfig(IEnumerable<KeyValuePair<object, string>> filterOptions, bool isRequired = false)
     {
         IsRequired = isRequired;

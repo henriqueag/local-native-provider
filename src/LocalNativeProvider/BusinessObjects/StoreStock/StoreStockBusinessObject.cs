@@ -40,7 +40,7 @@ public class StoreStockBusinessObject : IBusinessObject
                     Filter = propertyInfo.Name switch
                     {
                         "StoreName" => filterConfigService.GetBusinessObjectFilterConfig(StoreStockData.TableName, "StoreName"),
-                        _ => default
+                        _ => BusinessObjectFilterConfig.Default
                     }
                 })
             .ToList();

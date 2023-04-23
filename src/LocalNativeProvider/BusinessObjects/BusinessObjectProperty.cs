@@ -11,6 +11,7 @@ public record BusinessObjectProperty
         DisplayName = propertyInfo.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyInfo.Name;
         Description = propertyInfo.GetCustomAttribute<DisplayNameAttribute>()?.DisplayName ?? propertyInfo.Name;
         Type = PropertyType.FromType(propertyInfo.PropertyType).Name;
+        Filter = BusinessObjectFilterConfig.Default;
     }
 
     public string Type { get; init; }

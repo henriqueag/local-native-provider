@@ -40,7 +40,7 @@ public class SalesOrderBusinessObject : IBusinessObject
                     {
                         "OrderStatus" => filterConfigService.GetBusinessObjectFilterConfig(SalesOrderData.TableName, "OrderStatus"),
                         "StaffName" => filterConfigService.GetBusinessObjectFilterConfig(SalesOrderData.TableName, "StaffName"),
-                        _ => default
+                        _ => BusinessObjectFilterConfig.Default
                     }
                 })
             .ToList();

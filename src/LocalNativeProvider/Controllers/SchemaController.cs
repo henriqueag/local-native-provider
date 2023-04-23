@@ -52,9 +52,7 @@ public class SchemaController : ControllerBase
             Name = property.Name;
             DisplayName = property.DisplayName;
             Description = property.Description;
-            Filter = property.Filter is not null 
-                ? new SchemaPropertyFilterResource(businessObject, property, request)
-                : null;
+            Filter = new SchemaPropertyFilterResource(businessObject, property, request);
         }
 
         public string Type { get; set; }
@@ -69,7 +67,7 @@ public class SchemaController : ControllerBase
         public SchemaPropertyFilterResource(IBusinessObject businessObject, BusinessObjectProperty property, HttpRequest request)
         {
             IsRequired = property.Filter.IsRequired;
-            OptionsUrl = property.Filter.Options is not null || property.Filter.Options.Any()
+            OptionsUrl = property.Filter.Options is not null
                 ? $"{request.Scheme}://{request.Host}/api/local-native-provider/options/{businessObject.Name}/{property.Name}"
                 : null;
         }
