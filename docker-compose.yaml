@@ -1,12 +1,36 @@
 version: '3.8'
 
 services:
-  localnativeprovider:
-    image: localnativeprovider:latest
-    container_name: localnativeprovider
+  local_native_provider:
+    image: local_native_provider:latest
+    container_name: local_native_provider
     environment:
-      - ConnectionStrings__Default=Server=172.17.0.2;Port=5432;Database=bikestores;User Id=postgres;Password=admin;
+      - ConnectionStrings__Default=Server=postgres_native_provider;Port=5432;Database=bikestores;User Id=postgres;Password=admin;
     ports:
       - "8080:8080"
-    network_mode: bridge
+    links:
+      - postgres_native_provider
+    networks:
+      - native-provider-network
     restart: always
+
+  postgres_native_provider:
+    image: postgres:alpine
+    container_name: postgres_native_provider
+    environment:
+      POSTGRES_PASSWORD: "admin"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-native-provider-data:/var/lib/postgresql/data
+    networks:
+      - native-provider-network
+    restart: always
+
+networks:
+  native-provider-network:
+    driver: bridge
+
+volumes:
+  postgres-native-provider-data:
+    external: true
